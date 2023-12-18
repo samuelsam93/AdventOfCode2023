@@ -14,13 +14,10 @@ int getCardNumber(string* line) {
 
 vector<int> processWinningNumbers(string* card) {
   vector<int> winners;
-  // cout << *card << "\n";
   if ((*card)[0] == ' ') {
     card->erase(0, 1);
   }
-  // cout << *card << "\n";
   while (card->substr(0, 1) != "|") {
-    // cout << card->substr(0, card->find(" "));
     winners.push_back(stoi(card->substr(0, card->find(" "))));
     card->erase(0, card->find(" ")+1);
 
@@ -32,25 +29,16 @@ vector<int> processWinningNumbers(string* card) {
   return winners;
 }
 
-// string processWinningNumbers(string* card) {
-//   string winners = card->substr(0, card->find("|"));
-//   card->erase(0, card->find("|")+2);
-//   return winners;
-// }
-
 int processPlayerNumbers(string* card, vector<int> winners) {
   vector<int> players;
   int result = 0;
   cout << "found: ";
   while (!card->empty()) {
-    // cout << "card from player numbers: " << *card << "\n";
     if ((*card)[0] == ' ') {
       card->erase(0, 1);
     }
-    // cout << "card from player numbers 2: " << *card << "\n";
 
     int curr_num = stoi(card->substr(0, min(card->find(" "), card->length())));
-    // check if curr num is in winners
     if (find(winners.begin(), winners.end(), curr_num) != winners.end()) {
       cout << curr_num << " ";
       if (result) {
